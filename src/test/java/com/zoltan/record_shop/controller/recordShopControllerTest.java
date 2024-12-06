@@ -57,8 +57,8 @@ class recordShopControllerTest {
     }
 
     @Test
-    @DisplayName("GET '/albums' JASON response with all albums.")
-    void getAllAlbums() throws Exception {
+    @DisplayName("GET '/albums' JASON response with no value.")
+    void getAllAlbums_empty() throws Exception {
         List<Album> albums = new ArrayList<>();
         albums.add(new Album());
 
