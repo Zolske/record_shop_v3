@@ -59,15 +59,33 @@ class recordShopControllerTest {
     @Test
     @DisplayName("GET '/albums' JASON response with no value.")
     void getAllAlbums_empty() throws Exception {
-        List<Album> albums = new ArrayList<>();
-        albums.add(new Album());
+        List<Album> albumsList = new ArrayList<>();
+        albumsList.add(new Album());
 
-        when(mockAlbumServiceImpl.getAllAlbums()).thenReturn(albums);
+        when(mockAlbumServiceImpl.getAllAlbums()).thenReturn(albumsList);
 
         this.mockMvcController.perform(
                 MockMvcRequestBuilders.get("/api/v1/recordShop/albums"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").doesNotExist());
+    }
 
+    @Test
+    @DisplayName("GET '/albums' JASON response with album title.")
+    void getAllAlbums_title() throws Exception {
+        List<Album> albumsList = new ArrayList<>();
+        Album album = new Album();
+        album.setId(1L);
+        album.setTitle("Thriller");
+        albumsList.add(album);
+        System.out.println(album);
+
+        when(mockAlbumServiceImpl.getAllAlbums()).thenReturn(albumsList);
+
+        this.mockMvcController.perform(
+                        MockMvcRequestBuilders.get("/api/v1/recordShop/albums"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(1));
+//                .andExpect(MockMvcResultMatchers.jsonPath("$[0].title").value("Thriller"));
     }
 }
