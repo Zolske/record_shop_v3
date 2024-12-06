@@ -3,7 +3,8 @@ package com.zoltan.record_shop.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
+//import org.springframework.data.annotation.Id; // is the wrong 'Id' annotation class
 
 @Entity
 public class Album {
@@ -15,5 +16,7 @@ public class Album {
 
     public Album(){}
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
